@@ -1,6 +1,6 @@
 # AI Lead Qualification & Automation System
 
-A complete AI automation project built to satisfy the I Vision Infotech technical test:
+A complete AI automation project built to automate the process of lead generation:
 - **Task 1** – Custom AI Automation Workflow (n8n)
 - **Task 2** – Third-Party API Integration (Telegram Bot API + Google Gemini API)
 - **Task 3** – Custom Dashboard (Flask + Chart.js)
@@ -13,15 +13,15 @@ A complete AI automation project built to satisfy the I Vision Infotech technica
 
 **AI chatbot qualifying leads on Telegram (Gemini-powered):**
 
-![Telegram bot conversation](screenshots/telegram-bot.png)
+<img width="918" height="898" alt="Screenshot 2026-07-09 123911" src="https://github.com/user-attachments/assets/78dfef5e-d286-4c0f-95c1-55d254f06c93" />
 
 **Live dashboard — lead pipeline and scoring breakdown:**
 
-![Dashboard](screenshots/dashboard.png)
+<img width="1907" height="891" alt="Screenshot 2026-07-09 123813" src="https://github.com/user-attachments/assets/54eb9980-f2f8-4634-bea6-a7cbf799b4e3" />
 
 **n8n automation workflow — auto-notifies on Hot leads:**
 
-![n8n workflow](screenshots/n8n-workflow.png)
+<img width="1660" height="578" alt="Screenshot 2026-07-09 123832" src="https://github.com/user-attachments/assets/9f639096-9cff-4ab5-b927-e3f753169c5b" />
 
 ## What it does
 1. A **Telegram bot** talks to potential customers (stand-in for a WhatsApp lead-gen bot — same architecture, easier to test without Meta business verification).
@@ -110,5 +110,13 @@ git push -u origin main
 - **Client automation flow** → n8n hot-lead notification pipeline
 - **MySQL/MongoDB** → swap SQLite for MySQL by changing the connection string in `db.py` (schema is identical — noted in comments)
 
-## Extending for WhatsApp (mention in your interview)
-Same architecture — swap `bot.py`'s Telegram polling loop for Meta's WhatsApp Cloud API webhook receiver (Flask route `/webhook`, verify token + POST handler). Everything downstream (Gemini call, DB, n8n) stays identical. This is worth saying explicitly to the interviewer — it shows you understand the pattern, not just one API.
+## Contributing
+
+Open for collaboration! If you'd like to extend this (e.g. add WhatsApp Cloud API support, swap in a different LLM, add MySQL, improve the dashboard), feel free to fork the repo and submit a pull request, or open an issue with suggestions. Bug reports and feature ideas are also welcome.
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details. Free to use, modify, and build on for personal or commercial projects.
+
+
+
