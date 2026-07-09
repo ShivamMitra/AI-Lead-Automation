@@ -7,6 +7,22 @@ A complete AI automation project built to satisfy the I Vision Infotech technica
 - **Task 4** – Real Client Automation Flow (AI lead-qualifying chatbot)
 - **Task 5** – GitHub-ready repo
 
+🔗 **Live Demo:** https://ai-lead-automation-ci1f.onrender.com
+
+## Screenshots
+
+**AI chatbot qualifying leads on Telegram (Gemini-powered):**
+
+![Telegram bot conversation](screenshots/telegram-bot.png)
+
+**Live dashboard — lead pipeline and scoring breakdown:**
+
+![Dashboard](screenshots/dashboard.png)
+
+**n8n automation workflow — auto-notifies on Hot leads:**
+
+![n8n workflow](screenshots/n8n-workflow.png)
+
 ## What it does
 1. A **Telegram bot** talks to potential customers (stand-in for a WhatsApp lead-gen bot — same architecture, easier to test without Meta business verification).
 2. Every message is sent to **Google Gemini (free tier)**, which qualifies the lead (asks for name, need, budget, timeline) and scores them Hot / Warm / Cold.
