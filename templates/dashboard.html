@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AI Lead Automation Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 32px; }
+    h1 { font-size: 22px; margin-bottom: 4px; }
+    .sub { color: #94a3b8; margin-bottom: 24px; font-size: 14px; }
+    .cards { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+    .card { background: #1e293b; border-radius: 10px; padding: 16px 20px; min-width: 120px; }
+    .card .num { font-size: 28px; font-weight: 700; }
+    .hot .num { color: #f87171; }
+    .warm .num { color: #fbbf24; }
+    .cold .num { color: #60a5fa; }
+    .card .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 10px; overflow: hidden; }
+    th, td { padding: 12px 16px; text-align: left; font-size: 14px; border-bottom: 1px solid #334155; }
+    th { color: #94a3b8; font-weight: 600; font-size: 12px; text-transform: uppercase; }
+    .badge { padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .badge.Hot { background: #7f1d1d; color: #fca5a5; }
+    .badge.Warm { background: #78350f; color: #fcd34d; }
+    .badge.Cold { background: #1e3a8a; color: #93c5fd; }
+    .badge.Unqualified { background: #334155; color: #cbd5e1; }
+    .chart-wrap { max-width: 320px; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <h1>AI Lead Qualification Dashboard</h1>
+  <div class="sub">Live leads captured by the Telegram + Gemini automation bot</div>
+
+  <div class="cards">
+    <div class="card hot"><div class="num">{{ counts.Hot }}</div><div class="label">Hot Leads</div></div>
+    <div class="card warm"><div class="num">{{ counts.Warm }}</div><div class="label">Warm Leads</div></div>
+    <div class="card cold"><div class="num">{{ counts.Cold }}</div><div class="label">Cold Leads</div></div>
+    <div class="card"><div class="num">{{ leads|length }}</div><div class="label">Total Leads</div></div>
+  </div>
+
+  <div class="chart-wrap"><canvas id="scoreChart"></canvas></div>
+
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Need</th><th>Budget</th><th>Timeline</th><th>Score</th><th>Captured</th></tr>
+    </thead>
+    <tbody>
+      {% for lead in leads %}
+      <tr>
+        <td>{{ lead.name or "—" }}</td>
+        <td>{{ lead.need or "—" }}</td>
+        <td>{{ lead.budget or "—" }}</td>
+        <td>{{ lead.timeline or "—" }}</td>
+        <td><span class="badge {{ lead.score }}">{{ lead.score }}</span></td>
+        <td>{{ lead.created_at[:16] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script>
+    new Chart(document.getElementById('scoreChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Hot', 'Warm', 'Cold', 'Unqualified'],
+        datasets: [{
+          data: [{{ counts.Hot }}, {{ counts.Warm }}, {{ counts.Cold }}, {{ counts.Unqualified }}],
+          backgroundColor: ['#f87171', '#fbbf24', '#60a5fa', '#475569']
+        }]
+      },
+      options: { plugins: { legend: { labels: { color: '#e2e8f0' } } } }
+    });
+  </script>
+</body>
+</html>
