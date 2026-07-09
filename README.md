@@ -8,6 +8,7 @@ A complete AI automation project built to automate the process of lead generatio
 - **Task 5** – GitHub-ready repo
 
 🔗 **Live Demo:** https://ai-lead-automation-ci1f.onrender.com
+https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge
 
 ## Screenshots
 
